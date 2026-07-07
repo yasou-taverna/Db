@@ -40,19 +40,14 @@ export function normalizeReservation(r) {
     date: formatDateValue(r.date),
     time,
     guests: Number(r.guests || 0),
-
     area: String(r.area || BOOKING_TIMES[time] || ''),
     tableId: String(r.tableId || ''),
-
     status: String(r.status || 'new'),
     notes: String(r.notes || ''),
-
     depositStatus: String(r.depositStatus || 'pending'),
     reservationType: String(r.reservationType || 'private'),
-
     receiptFileName: String(r.receiptFileName || ''),
     receiptUrl: String(r.receiptUrl || ''),
-
     source: String(r.source || ''),
     createdAt: String(r.createdAt || '')
   };
@@ -61,15 +56,16 @@ export function normalizeReservation(r) {
 function formatDateValue(value) {
   if (!value) return '';
 
-  if (typeof value === 'string') {
-    if (/^\d{4}-\d{2}-\d{2}/.test(value)) return value.slice(0, 10);
-    return value;
+  const str = String(value);
+
+  if (/^\d{4}-\d{2}-\d{2}/.test(str)) {
+    return str.slice(0, 10);
   }
 
   try {
     return new Date(value).toISOString().slice(0, 10);
   } catch (e) {
-    return String(value);
+    return str;
   }
 }
 
@@ -90,41 +86,6 @@ function formatTimeValue(value) {
   }
 
   return str.slice(0, 5);
-}
-
-export function todayISO() {
-  return new Date().toISOString().slice(0, 10);
-}
-    area: String(r.area || BOOKING_TIMES[time] || ''),
-    tableId: String(r.tableId || ''),
-
-    status: String(r.status || 'new'),
-    notes: String(r.notes || ''),
-
-    depositStatus: String(r.depositStatus || 'pending'),
-    reservationType: String(r.reservationType || 'private'),
-
-    receiptFileName: String(r.receiptFileName || ''),
-    receiptUrl: String(r.receiptUrl || ''),
-
-    source: String(r.source || ''),
-    createdAt: String(r.createdAt || '')
-  };
-}
-
-function formatDateValue(value) {
-  if (!value) return '';
-
-  if (typeof value === 'string') {
-    if (/^\d{4}-\d{2}-\d{2}/.test(value)) return value.slice(0, 10);
-    return value;
-  }
-
-  try {
-    return new Date(value).toISOString().slice(0, 10);
-  } catch (e) {
-    return String(value);
-  }
 }
 
 export function todayISO() {
