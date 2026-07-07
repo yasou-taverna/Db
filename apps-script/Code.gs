@@ -22,6 +22,7 @@ function doPost(e) {
 
 function addReservation(r) {
   const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+
   sheet.appendRow([
     r.id || '',
     r.customerName || '',
@@ -34,6 +35,7 @@ function addReservation(r) {
     r.status || 'new',
     r.notes || '',
     r.depositStatus || 'pending',
+    r.reservationType || 'private',
     r.source || 'public-booking',
     r.createdAt || new Date().toISOString()
   ]);
@@ -48,6 +50,7 @@ function getReservations() {
   if (values.length <= 1) return [];
 
   const headers = values.shift();
+
   return values.map(row => {
     const item = {};
     headers.forEach((h, i) => item[h] = row[i]);
