@@ -1,7 +1,7 @@
 import { sidebar } from '../components/sidebar.js';
 import { loadReservations, updateReservationStatus } from '../services/reservations.service.js';
 import { AREA_NAMES } from '../config/booking-times.js';
-import { statusLabel, depositLabel, reservationTypeLabel } from '../components/reservation-card.js';
+import { statusLabel, reservationTypeLabel } from '../components/reservation-card.js';
 
 let allRows = [];
 
@@ -226,33 +226,4 @@ function escapeHtml(str) {
 
 function escapeAttr(str) {
   return escapeHtml(str);
-}}
-
-async function refresh(){
-  allRows = await loadReservations();
-  allRows.sort((a,b) => `${b.date} ${b.time}`.localeCompare(`${a.date} ${a.time}`));
-  applyFilters();
-}
-
-function applyFilters(){
-  const date = document.getElementById('dateFilter').value;
-  const area = document.getElementById('areaFilter').value;
-  const q = document.getElementById('searchFilter').value.trim();
-
-  let rows = allRows;
-  if (date) rows = rows.filter(r => r.date === date);
-  if (area) rows = rows.filter(r => r.area === area);
-  if (q) rows = rows.filter(r =>
-    [r.customerName,r.phone,r.tableId,r.time].some(v => String(v||'').includes(q))
-  );
-
-  document.getElementById('reservationsList').innerHTML =
-    rows.length ? rows.map(r => reservationCard(r)).join('') : '<div class="empty">לא נמצאו הזמנות</div>';
-
-  document.querySelectorAll('[data-status-id]').forEach(btn => {
-    btn.onclick = async () => {
-      await updateReservationStatus(btn.dataset.statusId, btn.dataset.status);
-      await refresh();
-    };
-  });
 }
