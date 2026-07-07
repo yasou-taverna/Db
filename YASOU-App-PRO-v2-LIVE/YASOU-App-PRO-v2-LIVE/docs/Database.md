@@ -1,2 +1,0 @@
-# Database
-Google Sheets: Reservations.
