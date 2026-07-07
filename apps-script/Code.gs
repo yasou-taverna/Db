@@ -3,7 +3,7 @@ const SHEET_NAME = 'Reservations';
 // אם אתה רוצה לשמור קבלות ב-Google Drive,
 // צור תיקייה בדרייב, העתק את ה-ID שלה, והדבק כאן.
 // בינתיים אפשר להשאיר ריק.
-const RECEIPTS_FOLDER_ID = '';
+const RECEIPTS_FOLDER_ID = '1AAOvUdB-wN7Z9eIYCx6neAiHiekL_LGZ';
 
 function doGet(e) {
   const action = e.parameter.action;
