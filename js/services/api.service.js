@@ -6,7 +6,11 @@ export async function apiGet(action) {
     `${API_URL}?action=${encodeURIComponent(action)}&t=${Date.now()}`
   );
 
-  return await response.json();
+  try {
+    return await response.json();
+  } catch (e) {
+    return [];
+  }
 }
 
 export async function apiPost(payload) {
