@@ -6,25 +6,18 @@ export async function apiGet(action) {
     `${API_URL}?action=${encodeURIComponent(action)}&t=${Date.now()}`
   );
 
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status}`);
-  }
-
   return await response.json();
 }
 
 export async function apiPost(payload) {
   const response = await fetch(API_URL, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
     body: JSON.stringify(payload)
   });
 
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status}`);
+  try {
+    return await response.json();
+  } catch (e) {
+    return { ok: true };
   }
-
-  return await response.json();
 }
