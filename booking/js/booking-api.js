@@ -1,5 +1,5 @@
 export const API_URL =
-  'https://script.google.com/macros/s/AKfycbxmiHGnlHf8f8jxAiqK40XQ1pTdasCZs3-GY3adJZIQKfm4BOie4b7dJZTp8m2TX4vOLg/exec';
+  'https://script.google.com/macros/s/AKfycby2aRidcEkq3qCyvujsicufIEajXg4sa5ytSZj90qLR5AFoHsQ61qf00HZVOUKr2Cillg/exec';
 
 export async function postReservation(reservation) {
   const response = await fetch(API_URL, {
