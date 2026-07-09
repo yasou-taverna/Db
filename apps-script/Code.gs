@@ -1,5 +1,5 @@
 const SHEET_NAME = 'Reservations';
-const SPREADSHEET_ID = '1rdWxn9lzp1uano5TnUzE6VTvTYP6b5r8f51ylMMhSwk';
+const SPREADSHEET_ID = '1TPC1A9OF0s_44lHn5hBahmIEmg10KPwPCiTXeLf68bI';
 const RECEIPTS_FOLDER_ID = '1AAOvUdB-wN7Z9eIYCx6neAiHiekL_LGZ';
 
 const TABLES = [
